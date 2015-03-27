@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       main.c
 * Date Created :   Monday March 23, 2015 07:53:28 PM
-* Last Edited :    Wednesday March 25, 2015 12:40:33 AM
+* Last Edited :    Thursday March 26, 2015 08:40:37 PM
 * Description :
 ----------------------------------------------------------*/
 
@@ -14,17 +14,23 @@
 //#include <avr/sfr_defs.h>
 
 #include "timer.h"
+#include "button_state.h"
 #include "io.h"
+
+unsigned int eLanternServicePeriod = 10;
 
 int main(void){
 	DDRB |= (1 << PORTB0);	//Configured as output for testing 
 	timer_init();
+	interrupt_init();
 	while(1){
-		if(get_ticks() < 10){		//rename 10
-			//do jobs
-				//button status
-		}	
+		if(get_ticks() > eLanternServicePeriod){	//Does these jobs every period defined
+			eLanternServicePeriod += 10;
+			button_flag_status();
+			button_status();
+		}
 	}
-	return 1;
+	return 0;	
 }
 
+//Think about just using ticks and reseting it to 0

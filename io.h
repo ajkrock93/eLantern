@@ -2,8 +2,9 @@
 * Author :         Andrew Krock
 * Filename :       io.h
 * Date Created :   Monday March 23, 2015 08:01:43 PM
-* Last Edited :    Friday March 27, 2015 12:56:27 AM
-* Description :
+* Last Edited :    Monday March 30, 2015 04:55:17 PM
+* Description :    This file handles all the macros of the 
+				   project
 ----------------------------------------------------------*/
 
 #ifndef IO_H

@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       light_state.h
 * Date Created :   Thursday March 26, 2015 08:51:44 PM
-* Last Edited :    Friday March 27, 2015 12:54:10 AM
+* Last Edited :    Friday March 27, 2015 01:42:08 AM
 * Description :
 ----------------------------------------------------------*/
 

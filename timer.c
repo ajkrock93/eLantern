@@ -2,8 +2,8 @@
 * Author :         Andrew Krock
 * Filename :       timer.c
 * Date Created :   Monday March 23, 2015 07:59:26 PM
-* Last Edited :    Friday March 27, 2015 12:50:13 AM
-* Description :
+* Last Edited :    Friday April 03, 2015 04:07:13 PM
+* Description :    This file handles timer setup
 ----------------------------------------------------------*/
 
 #define F_CPU 1000000
@@ -16,6 +16,7 @@
 #include "timer.h"
 #include "io.h"
 
+//Starting timers at 0
 unsigned int ticks = 0;
 unsigned int debounce_timer = 0;
 unsigned int sleep_timer = 0;
@@ -39,13 +40,19 @@ unsigned int get_ticks(){
 	return ticks;
 }
 
+//Function returns current debounce timer value
 unsigned int get_debounce(){
 	return debounce_timer;
 }
 
+//Function that returns sleep timer value
 unsigned int get_sleep(){
 	return sleep_timer;
 }
+
+//TODO
+//Look into turing light off on on in the timer interrupts
+
 //Interrupts every 1 ms and adds a tick 
 ISR(TIMER0_COMPA_vect){	
 	ticks ++;

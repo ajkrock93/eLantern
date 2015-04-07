@@ -2,8 +2,9 @@
 * Author :         Andrew Krock
 * Filename :       light_state.c
 * Date Created :   Thursday March 26, 2015 08:51:28 PM
-* Last Edited :    Friday March 27, 2015 12:56:46 AM
-* Description :
+* Last Edited :    Monday March 30, 2015 04:54:23 PM
+* Description :    This function handles the state of the
+                   light
 ----------------------------------------------------------*/
 
  #define F_CPU 1000000
@@ -18,6 +19,7 @@
 #include "timer.h"
 #include "io.h"
 
+//Inits state of light
 unsigned int light_state = 0;
 
 void light_status(){

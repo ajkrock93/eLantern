@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       button_state.c
 * Date Created :   Thursday March 26, 2015 01:21:11 PM
-* Last Edited :    Monday March 30, 2015 04:52:15 PM
+* Last Edited :    Tuesday April 07, 2015 03:39:47 PM
 * Description :    This file handles the button state
 ----------------------------------------------------------*/
 
@@ -25,8 +25,8 @@ unsigned int switch_state = 0;
 //with INT0
 void interrupt_init(){
 	cli();
-	//MCUCR = (ISC01x)|(ISC00x);
-	GIMSK = (INT0x);
+	GIMSK = (PCIEx);
+	PCMSK = (PCINT3x);
 	sei();
 }
 
@@ -38,7 +38,6 @@ void button_flag_status(){
 	if((button_flag == 1) && (switch_state == NOT_PRESSED)){
 		debounce_timer = 0;
 		switch_state = PRESSED;
-		//PORTB |= (1 << PORTB0);
 	}else{
 		// do nothing
 	}
@@ -48,7 +47,6 @@ void button_flag_status(){
 void button_status(){
 	switch(switch_state){
 		case NOT_PRESSED:
-			//PORTB &= ~(1 << PORTB0);
 			break;
 		case PRESSED:
 		if(get_debounce() < DEBOUNCE_TIME){
@@ -64,7 +62,6 @@ void button_status(){
 	}
 }
 
-ISR(INT0_vect){
+ISR(PCINT0_vect){
 	button_flag = 1;
 }
-

@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       main.c
 * Date Created :   Monday March 23, 2015 07:53:28 PM
-* Last Edited :    Monday March 30, 2015 04:55:35 PM
+* Last Edited :    Tuesday April 07, 2015 03:39:53 PM
 * Description :    This file handles main job loop that
 				   runs how long the eLanternServicePeriod
 				   is set	
@@ -21,16 +21,26 @@
 #include "light_state.h"
 #include "io.h"
 
-//TODO
-//Make this variable a macro
-unsigned int eLanternServicePeriod = 10;
+/*
+//Description:
+//This function sets up the project
+void Project_Init(){
+	//unsigned int eLanternServicePeriod = SERVICE_PERIOD;
+	//DDRB |= MACRO;
+	//PORTB |= MACRO;
+	//timer_imit();
+	//interrupt_init();
+}
+*/
+
+unsigned int eLanternServicePeriod = SERVICE_PERIOD;
 
 //Description:
 //This main loop runs every time get_ticks returns a value 
 //longer than eLanternServicePeriod
 int main(void){
 	DDRB |= (1 << PORTB0);	//Configured as output for testing 
-	PORTB |= (1 << PORTB2);
+	PORTB |= (1 << PORTB3);
 	timer_init();
 	interrupt_init();
 	while(1){

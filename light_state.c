@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       light_state.c
 * Date Created :   Thursday March 26, 2015 08:51:28 PM
-* Last Edited :    Monday March 30, 2015 04:54:23 PM
+* Last Edited :    Tuesday April 07, 2015 03:38:00 PM
 * Description :    This function handles the state of the
                    light
 ----------------------------------------------------------*/
@@ -29,7 +29,7 @@ void light_status(){
 			if(button_flag == 1){
 				light_state = ON;
 			}
-			if(get_sleep() > 3000){
+			if(get_sleep() > SLEEP_TIME){
 				set_sleep_mode(SLEEP_MODE_PWR_DOWN);
 				sleep_mode();
 			}

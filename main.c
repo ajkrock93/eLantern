@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       main.c
 * Date Created :   Monday March 23, 2015 07:53:28 PM
-* Last Edited :    Tuesday April 07, 2015 03:39:53 PM
+* Last Edited :    Tuesday April 07, 2015 10:57:52 PM
 * Description :    This file handles main job loop that
 				   runs how long the eLanternServicePeriod
 				   is set	
@@ -39,8 +39,8 @@ unsigned int eLanternServicePeriod = SERVICE_PERIOD;
 //This main loop runs every time get_ticks returns a value 
 //longer than eLanternServicePeriod
 int main(void){
-	DDRB |= (1 << PORTB0);	//Configured as output for testing 
-	PORTB |= (1 << PORTB3);
+	DDRB |= (1 << PORTB0);		//Configured as output for testing 
+	PORTB |= (1 << PORTB3);		//Set button input for high impedence	
 	timer_init();
 	interrupt_init();
 	while(1){

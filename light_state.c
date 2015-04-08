@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       light_state.c
 * Date Created :   Thursday March 26, 2015 08:51:28 PM
-* Last Edited :    Tuesday April 07, 2015 03:38:00 PM
+* Last Edited :    Tuesday April 07, 2015 10:57:59 PM
 * Description :    This function handles the state of the
                    light
 ----------------------------------------------------------*/
@@ -25,7 +25,7 @@ unsigned int light_state = 0;
 void light_status(){
 	switch(light_state){
 		case OFF:
-			PORTB &= ~(1 << PORTB0);
+			OCR0B = 0;		//Turns light off/make MACRO
 			if(button_flag == 1){
 				light_state = ON;
 			}
@@ -35,7 +35,7 @@ void light_status(){
 			}
 			break;
 		case ON:
-			PORTB |= (1 << PORTB0);
+			OCR0B = 120;		//Turns light on/make MACRO
 			if(button_flag == 1){
 				light_state = OFF;
 				sleep_timer = 0;

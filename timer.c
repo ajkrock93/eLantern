@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       timer.c
 * Date Created :   Monday March 23, 2015 07:59:26 PM
-* Last Edited :    Friday April 03, 2015 04:07:13 PM
+* Last Edited :    Tuesday April 07, 2015 10:57:47 PM
 * Description :    This file handles timer setup
 ----------------------------------------------------------*/
 
@@ -31,7 +31,7 @@ void timer_init(){
 	TCCR0B = (CS01x);
 	TIMSK = (OCIE0Ax)|(OCIE0Bx);
 	OCR0A = 125;
-	OCR0B = 20;
+	OCR0B = 0;
 	sei();
 }
 
@@ -50,16 +50,23 @@ unsigned int get_sleep(){
 	return sleep_timer;
 }
 
-//TODO
-//Look into turing light off on on in the timer interrupts
-
 //Interrupts every 1 ms and adds a tick 
 ISR(TIMER0_COMPA_vect){	
 	ticks ++;
 	debounce_timer ++;
 	sleep_timer ++;
+
+	//Turn light on or keep it off
+	if(OCR0B == 0){
+		PORTB &= ~(1 << PORTB0);
+	}
+	else{
+		PORTB |= (1 << PORTB0);
+	}
+
 }
 
 ISR(TIMER0_COMPB_vect){
-	//nothing here yet
+	//Turn light off
+	PORTB &= ~(1 << PORTB0);
 }

@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       light_state.c
 * Date Created :   Thursday March 26, 2015 08:51:28 PM
-* Last Edited :    Tuesday April 07, 2015 10:57:59 PM
+* Last Edited :    Thursday April 09, 2015 08:51:30 PM
 * Description :    This function handles the state of the
                    light
 ----------------------------------------------------------*/
@@ -20,7 +20,7 @@
 #include "io.h"
 
 //Inits state of light
-unsigned int light_state = 0;
+unsigned int light_state = OFF;
 
 void light_status(){
 	switch(light_state){

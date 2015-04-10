@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       button_state.c
 * Date Created :   Thursday March 26, 2015 01:21:11 PM
-* Last Edited :    Tuesday April 07, 2015 10:57:56 PM
+* Last Edited :    Thursday April 09, 2015 08:51:33 PM
 * Description :    This file handles the button state
 ----------------------------------------------------------*/
 
@@ -16,13 +16,10 @@
 #include "io.h"
 #include "timer.h"
 
-//TODO
-//Change switch_state to button_state
 unsigned int button_flag = 0;
-unsigned int switch_state = 0;
+unsigned int button_state = NOT_PRESSED;
 
-//Initializes the interrupt vector to interrupt on low-input
-//with INT0
+//Initializes the interrupt vector
 void interrupt_init(){
 	cli();
 	GIMSK = (PCIEx);
@@ -30,14 +27,11 @@ void interrupt_init(){
 	sei();
 }
 
-//TODO
-//Maybe change the name of this function
-
 //Check to see if button flag is set
 void button_flag_status(){
-	if((button_flag == 1) && (switch_state == NOT_PRESSED)){
+	if((button_flag == 1) && (button_state == NOT_PRESSED)){
 		debounce_timer = 0;
-		switch_state = PRESSED;
+		button_state = PRESSED;
 	}else{
 		// do nothing
 	}
@@ -45,15 +39,15 @@ void button_flag_status(){
 
 //Debounce switch statement
 void button_status(){
-	switch(switch_state){
+	switch(button_state){
 		case NOT_PRESSED:
 			break;
 		case PRESSED:
-		if(get_debounce() < DEBOUNCE_TIME){
-				switch_state = PRESSED;	
+			if(get_debounce() < DEBOUNCE_TIME){
+				button_state = PRESSED;	
 			}
 			if(get_debounce() > DEBOUNCE_TIME){
-				switch_state = NOT_PRESSED;
+				button_state = NOT_PRESSED;
 				button_flag = 0;
 			}
 			break;

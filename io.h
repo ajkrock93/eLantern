@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       io.h
 * Date Created :   Monday March 23, 2015 08:01:43 PM
-* Last Edited :    Tuesday April 07, 2015 03:39:51 PM
+* Last Edited :    Thursday April 09, 2015 08:51:39 PM
 * Description :    This file handles all the macros of the 
 				   project
 ----------------------------------------------------------*/
@@ -16,7 +16,7 @@
 //Button state Macros
 #define PRESSED         1
 #define NOT_PRESSED     0
-#define DEBOUNCE_TIME	600 //in milliseconds
+#define DEBOUNCE_TIME	200 //in milliseconds
 
 //Light State Macros
 #define ON				1

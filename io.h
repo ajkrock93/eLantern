@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       io.h
 * Date Created :   Monday March 23, 2015 08:01:43 PM
-* Last Edited :    Thursday April 09, 2015 08:51:39 PM
+* Last Edited :    Monday April 13, 2015 09:49:44 AM
 * Description :    This file handles all the macros of the 
 				   project
 ----------------------------------------------------------*/
@@ -14,13 +14,18 @@
 #define SERVICE_PERIOD	10
 
 //Button state Macros
-#define PRESSED         1
-#define NOT_PRESSED     0
-#define DEBOUNCE_TIME	200 //in milliseconds
+#define WAITING         0
+#define PRESSED			1
+#define DEBOUNCING		2
+#define DEBOUNCE_TIME	100 //in milliseconds
 
 //Light State Macros
-#define ON				1
 #define OFF				0
+#define ON_STATE		1
+#define LOW				2
+#define	WAITING_STATE_1	3
+#define	MEDIUM			4
+#define WAITING_STATE_2	5
 #define SLEEP_TIME		10000 //in milliseconds
 
 //Timer/Counter1 control register A

@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       timer.c
 * Date Created :   Monday March 23, 2015 07:59:26 PM
-* Last Edited :    Thursday April 09, 2015 08:51:35 PM
+* Last Edited :    Saturday April 11, 2015 03:04:11 PM
 * Description :    This file handles timer setup
 ----------------------------------------------------------*/
 
@@ -20,9 +20,8 @@
 unsigned int ticks = 0;
 unsigned int debounce_timer = 0;
 unsigned int sleep_timer = 0;
-
-unsigned int timer_a;
-unsigned int timer_b;
+unsigned int select_timer = 0;
+unsigned int runtime_timer = 0;
 
 //Initializes timer to CTC for 1 ms period
 void timer_init(){	
@@ -50,11 +49,14 @@ unsigned int get_sleep(){
 	return sleep_timer;
 }
 
+
 //Interrupts every 1 ms and adds a tick 
 ISR(TIMER0_COMPA_vect){	
 	ticks ++;
 	debounce_timer ++;
 	sleep_timer ++;
+	select_timer ++;
+	runtime_timer ++;
 
 	//Turn light on or keep it off
 	if(OCR0B == 0){

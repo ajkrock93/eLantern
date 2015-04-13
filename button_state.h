@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       button_state.h
 * Date Created :   Thursday March 26, 2015 01:34:01 PM
-* Last Edited :    Thursday April 09, 2015 08:45:59 PM
+* Last Edited :    Monday April 13, 2015 09:52:35 AM
 * Description :
 ----------------------------------------------------------*/
 
@@ -11,7 +11,6 @@
 
 void interrupt_init();
 void button_status();
-void button_flag_status();
 
 extern unsigned int button_flag;
 #endif //BUTTON_STATE_H

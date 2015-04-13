@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       main.c
 * Date Created :   Monday March 23, 2015 07:53:28 PM
-* Last Edited :    Thursday April 09, 2015 08:51:27 PM
+* Last Edited :    Monday April 13, 2015 09:52:40 AM
 * Description :    This file handles main job loop that
 				   runs how long the eLanternServicePeriod
 				   is set	
@@ -46,9 +46,9 @@ int main(void){
 	while(1){
 		if(get_ticks() > eLanternServicePeriod){	//Does these jobs every period defined
 			eLanternServicePeriod += 10;	//Update the service period
-			button_flag_status();
 			button_status();
 			light_status();
+			//button_status();
 		}
 	}
 	return 0;	

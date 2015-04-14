@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       button_state.c
 * Date Created :   Thursday March 26, 2015 01:21:11 PM
-* Last Edited :    Monday April 13, 2015 09:52:37 AM
+* Last Edited :    Monday April 13, 2015 08:18:47 PM
 * Description :    This file handles the button state
 ----------------------------------------------------------*/
 

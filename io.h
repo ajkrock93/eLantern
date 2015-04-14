@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       io.h
 * Date Created :   Monday March 23, 2015 08:01:43 PM
-* Last Edited :    Monday April 13, 2015 09:49:44 AM
+* Last Edited :    Monday April 13, 2015 08:18:55 PM
 * Description :    This file handles all the macros of the 
 				   project
 ----------------------------------------------------------*/
@@ -20,13 +20,23 @@
 #define DEBOUNCE_TIME	100 //in milliseconds
 
 //Light State Macros
+#define LIGHT_LOW		25
+#define LIGHT_MEDIUM	75
+#define LIGHT_HIGH		120
 #define OFF				0
 #define ON_STATE		1
 #define LOW				2
 #define	WAITING_STATE_1	3
 #define	MEDIUM			4
 #define WAITING_STATE_2	5
+#define HIGH			6
+#define WAITING_STATE_3	7
+#define FADE			8
+#define UP				1
+#define DOWN			0
 #define SLEEP_TIME		10000 //in milliseconds
+#define SELECT_TIME		300
+#define RUNTIME			5000
 
 //Timer/Counter1 control register A
 #define COM0A1x			(1<<COM0A1)

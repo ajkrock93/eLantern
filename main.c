@@ -2,10 +2,9 @@
 * Author :         Andrew Krock
 * Filename :       main.c
 * Date Created :   Monday March 23, 2015 07:53:28 PM
-* Last Edited :    Saturday April 18, 2015 04:42:24 PM
-* Description :    This file handles main job loop that
-				   runs how long the eLanternServicePeriod
-				   is set	
+* Last Edited :    Saturday April 18, 2015 05:08:57 PM
+* Description :    This file handles the main job loop
+				   that runs every eLanternServicePeriod	
 ----------------------------------------------------------*/
 
 #define F_CPU 1000000
@@ -13,8 +12,6 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/sleep.h>
-//#include <avr/interrupt.h>
-//#include <avr/sfr_defs.h>
 
 #include "timer.h"
 #include "button_state.h"
@@ -36,7 +33,6 @@ int main(void){
 			eLanternServicePeriod += 10;	//Update the service period
 			button_status();
 			light_status();
-			//button_status();
 		}
 	}
 	return 0;	

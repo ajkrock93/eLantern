@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       light_state.c
 * Date Created :   Thursday March 26, 2015 08:51:28 PM
-* Last Edited :    Saturday April 18, 2015 04:42:31 PM
+* Last Edited :    Saturday April 18, 2015 05:10:06 PM
 * Description :    This function handles the state of the
                    light
 ----------------------------------------------------------*/
@@ -27,6 +27,8 @@ void light_init(){
 	DDRB |= (1 << PORTB0);
 }
 
+//Finite state machine that controls what the 
+//light is doing
 void light_status(){
 	switch(light_state){
 		case OFF:

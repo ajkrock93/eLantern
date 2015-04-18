@@ -2,13 +2,13 @@
 * Author :         Andrew Krock
 * Filename :       timer.c
 * Date Created :   Monday March 23, 2015 07:59:26 PM
-* Last Edited :    Saturday April 18, 2015 04:42:26 PM
-* Description :    This file handles timer setup
+* Last Edited :    Saturday April 18, 2015 05:09:50 PM
+* Description :    This file handles timer setup, 
+				   counting and returning timer values
 ----------------------------------------------------------*/
 
 #define F_CPU 1000000
 
-//#include <avr/io.h>
 #include <avr/sfr_defs.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>

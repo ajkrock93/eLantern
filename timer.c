@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       timer.c
 * Date Created :   Monday March 23, 2015 07:59:26 PM
-* Last Edited :    Saturday April 11, 2015 03:04:11 PM
+* Last Edited :    Saturday April 18, 2015 04:42:26 PM
 * Description :    This file handles timer setup
 ----------------------------------------------------------*/
 
@@ -22,6 +22,7 @@ unsigned int debounce_timer = 0;
 unsigned int sleep_timer = 0;
 unsigned int select_timer = 0;
 unsigned int runtime_timer = 0;
+unsigned int fade_timer = 0;
 
 //Initializes timer to CTC for 1 ms period
 void timer_init(){	
@@ -36,19 +37,57 @@ void timer_init(){
 
 //Function returns current tick value
 unsigned int get_ticks(){
-	return ticks;
+	unsigned int temp;
+	cli();
+	temp = ticks;
+	sei();
+	return temp;
 }
 
 //Function returns current debounce timer value
 unsigned int get_debounce(){
-	return debounce_timer;
+	unsigned int temp;
+	cli();
+	temp = debounce_timer;
+	sei();
+	return temp;
 }
 
 //Function that returns sleep timer value
 unsigned int get_sleep(){
-	return sleep_timer;
+	unsigned int temp;
+	cli();
+	temp = sleep_timer;
+	sei();
+	return temp;
 }
 
+//Function that returns select timer value
+unsigned int get_select(){
+	unsigned int temp;
+	cli();
+	temp = select_timer;
+	sei();
+	return temp;
+}
+
+//Function that returns runtime timer value
+unsigned int get_runtime(){
+	unsigned int temp;
+	cli();
+	temp = runtime_timer;
+	sei();
+	return temp;
+}
+
+//Function that returns the fade timer value
+unsigned int get_fade(){
+	unsigned int temp;
+	cli();
+	temp = fade_timer;
+	sei();
+	return temp;
+}
 
 //Interrupts every 1 ms and adds a tick 
 ISR(TIMER0_COMPA_vect){	
@@ -57,6 +96,7 @@ ISR(TIMER0_COMPA_vect){
 	sleep_timer ++;
 	select_timer ++;
 	runtime_timer ++;
+	fade_timer ++;
 
 	//Turn light on or keep it off
 	if(OCR0B == 0){

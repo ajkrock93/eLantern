@@ -2,13 +2,14 @@
 * Author :         Andrew Krock
 * Filename :       button_state.h
 * Date Created :   Thursday March 26, 2015 01:34:01 PM
-* Last Edited :    Monday April 13, 2015 09:53:51 AM
+* Last Edited :    Saturday April 18, 2015 04:26:07 PM
 * Description :
 ----------------------------------------------------------*/
 
 #ifndef BUTTON_STATE_H
 #define BUTTON_STATE_H
 
+void button_init();
 void interrupt_init();
 void button_status();
 

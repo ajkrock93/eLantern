@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       button_state.c
 * Date Created :   Thursday March 26, 2015 01:21:11 PM
-* Last Edited :    Monday April 13, 2015 08:18:47 PM
+* Last Edited :    Saturday April 18, 2015 04:42:28 PM
 * Description :    This file handles the button state
 ----------------------------------------------------------*/
 
@@ -18,6 +18,11 @@
 
 unsigned int button_flag = 0;
 unsigned int button_state = WAITING;
+
+//Inits the button
+void button_init(){
+	PORTB |= (1 << PORTB3);
+}
 
 //Initializes the interrupt vector
 void interrupt_init(){
@@ -42,7 +47,7 @@ void button_status(){
 			button_state = DEBOUNCING;
 			break;
 		case DEBOUNCING:
-			if(debounce_timer > DEBOUNCE_TIME){
+			if(get_debounce() > DEBOUNCE_TIME){
 				button_state = WAITING;
 			}
 			break;

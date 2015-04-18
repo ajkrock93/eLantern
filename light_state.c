@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       light_state.c
 * Date Created :   Thursday March 26, 2015 08:51:28 PM
-* Last Edited :    Monday April 13, 2015 08:18:49 PM
+* Last Edited :    Saturday April 18, 2015 04:42:31 PM
 * Description :    This function handles the state of the
                    light
 ----------------------------------------------------------*/
@@ -19,14 +19,18 @@
 #include "timer.h"
 #include "io.h"
 
-//Inits state of light
 unsigned int light_state = OFF;
 unsigned int direction = UP;
+
+//Inits state of light
+void light_init(){
+	DDRB |= (1 << PORTB0);
+}
 
 void light_status(){
 	switch(light_state){
 		case OFF:
-			OCR0B = OFF;		//Turns light off/make MACRO
+			OCR0B = OFF;
 			if(button_flag == 1){
 				light_state = ON_STATE;
 				select_timer = 0;
@@ -37,11 +41,13 @@ void light_status(){
 			//}
 			break;
 		case ON_STATE:
-			if(button_flag == 1 && select_timer < SELECT_TIME){
+			if(button_flag == 1 && get_select() < SELECT_TIME){
 				OCR0B = OFF;
+				fade_timer = 0;
+				runtime_timer = 0;
 				light_state = FADE;
 			}
-			else if(select_timer > SELECT_TIME){
+			else if(get_select() > SELECT_TIME){
 				light_state = LOW;
 				runtime_timer = 0;
 			}
@@ -52,15 +58,15 @@ void light_status(){
 				light_state = WAITING_STATE_1;
 				select_timer = 0;
 			}
-			if(runtime_timer > RUNTIME){
+			if(get_runtime() > RUNTIME){
 				light_state = OFF;
 			}
 			break;
 		case WAITING_STATE_1:
-			if(button_flag == 1 && select_timer < SELECT_TIME){
+			if(button_flag == 1 && get_select() < SELECT_TIME){
 				light_state = OFF;
 			}
-			else if(select_timer > SELECT_TIME){
+			else if(get_select() > SELECT_TIME){
 				runtime_timer = 0;
 				light_state = MEDIUM;
 			}
@@ -71,15 +77,15 @@ void light_status(){
                 light_state = WAITING_STATE_2;
                 select_timer = 0;
             }
-            if(runtime_timer > RUNTIME){
+            if(get_runtime() > RUNTIME){
                 light_state = OFF;
             }
             break;
 		case WAITING_STATE_2:
-			if(button_flag == 1 && select_timer < SELECT_TIME){
+			if(button_flag == 1 && get_select() < SELECT_TIME){
                 light_state = OFF;
             }
-            else if(select_timer > SELECT_TIME){
+            else if(get_select() > SELECT_TIME){
 				runtime_timer = 0;
                 light_state = HIGH;
             }
@@ -90,41 +96,38 @@ void light_status(){
                 light_state = WAITING_STATE_3;
                 select_timer = 0;
             }
-			if(runtime_timer > RUNTIME){
+			if(get_runtime() > RUNTIME){
 				light_state = OFF;
 			}
 			break;
 		case WAITING_STATE_3:
-			if(button_flag == 1 && select_timer < SELECT_TIME){
+			if(button_flag == 1 && get_select() < SELECT_TIME){
 				light_state = OFF;
             }   
-            else if(select_timer > SELECT_TIME){
+            else if(get_select() > SELECT_TIME){
 				runtime_timer = 0;
                 light_state = LOW;
             }   
 			break;
 		case FADE:
-			while(OCR0B < 120 && direction == UP){
-				OCR0B++;
-				_delay_ms(10);
-				if(OCR0B == 120){
-					direction = DOWN;
+			if(get_fade() > 50){
+				if(direction == UP && OCR0B < 121){
+					OCR0B++;
+					if(OCR0B == 120){
+						direction = DOWN;
+					}
 				}
-				if(button_flag == 1){
-					light_state = OFF;
-				}
-			}
-			while(OCR0B > 0 && direction == DOWN){
-				OCR0B--;
-				_delay_ms(10);
-				if(OCR0B == 1){
+				if(direction == DOWN && OCR0B > 0){
+					OCR0B--;
+					if(OCR0B == 1){
 					direction = UP;
+					}
 				}
-				if(button_flag == 1){
-					light_state = OFF;
-				}
+				fade_timer = 0;
 			}
-			OCR0B = 0;
+			if(button_flag == 1 || get_runtime() > RUNTIME){
+				light_state = OFF;
+			}
 			break;
 		default:
 			break;

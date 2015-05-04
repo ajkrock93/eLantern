@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       io.h
 * Date Created :   Monday March 23, 2015 08:01:43 PM
-* Last Edited :    Saturday April 18, 2015 05:08:01 PM
+* Last Edited :    Monday May 04, 2015 02:09:39 PM
 * Description :    This file handles all the macros of the 
 				   project
 ----------------------------------------------------------*/
@@ -36,9 +36,9 @@
 #define DOWN			0
 #define SLEEP_TIME		10000 //in milliseconds
 #define SELECT_TIME		300
-#define RUNTIME			5000
+#define RUNTIME			20000
 
-//Timer/Counter1 control register A
+//Timer/Counter0 control register A
 #define COM0A1x			(1<<COM0A1)
 #define COM0A0x    	 	(1<<COM0A0)
 #define COM0B1x    	 	(1<<COM0B1)
@@ -46,7 +46,7 @@
 #define WGM01x     	 	(1<<WGM01)
 #define WGM00x     	 	(1<<WGM00)
 
-//Timer/Counter1 control register B
+//Timer/Counter0 control register B
 #define FOC0Ax			(1<<FOC0A)
 #define FOC0Bx      	(1<<FOC0B)
 #define WGM02x      	(1<<WGM02)
@@ -57,6 +57,17 @@
 //Timer/Counter Interrupt Mask Register
 #define	OCIE0Ax			(1<<OCIE0A)
 #define OCIE0Bx			(1<<OCIE0B)
+#define TOIE1x			(1<<TOIE1)
+
+//Timer/Counter Control1 Control Register
+#define CTC1x			(1<<CTC1)
+#define PWM1Ax			(1<<PWM1A)
+#define COM1A1x			(1<<COM1A1)
+#define COM1A0x			(1<<COM1A0)
+#define CS13x			(1<<CS13)
+#define CS12x			(1<<CS12)
+#define CS11x			(1<<CS11)
+#define CS10x			(1<<CS10)
 
 //MCU Control Register
 #define ISC00x			(1<<ISC00)

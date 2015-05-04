@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       timer.c
 * Date Created :   Monday March 23, 2015 07:59:26 PM
-* Last Edited :    Saturday April 18, 2015 05:09:50 PM
+* Last Edited :    Monday May 04, 2015 04:56:09 PM
 * Description :    This file handles timer setup, 
 				   counting and returning timer values
 ----------------------------------------------------------*/
@@ -27,11 +27,12 @@ unsigned int fade_timer = 0;
 //Initializes timer to CTC for 1 ms period
 void timer_init(){	
 	cli();
-	TCCR0A = (WGM01x);
-	TCCR0B = (CS01x);
-	TIMSK = (OCIE0Ax)|(OCIE0Bx);
-	OCR0A = 125;
-	OCR0B = 0;
+	//Start moving over to timer1
+	TCCR1 = (CTC1x)|(PWM1Ax)|(COM1A1x)|(CS11x)|(CS10x);
+	OCR1C = 250;
+	TIMSK = (TOIE1x); //Overflow int
+	OCR1A = 0;
+	//To do PWM set OCR1A to a value
 	sei();
 }
 
@@ -90,25 +91,11 @@ unsigned int get_fade(){
 }
 
 //Interrupts every 1 ms and adds a tick 
-ISR(TIMER0_COMPA_vect){	
+ISR(TIMER1_OVF_vect){	
 	ticks ++;
 	debounce_timer ++;
 	sleep_timer ++;
 	select_timer ++;
 	runtime_timer ++;
 	fade_timer ++;
-
-	//Turn light on or keep it off
-	if(OCR0B == 0){
-		PORTB &= ~(1 << PORTB0);
-	}
-	else{
-		PORTB |= (1 << PORTB0);
-	}
-
-}
-
-ISR(TIMER0_COMPB_vect){
-	//Turn light off
-	PORTB &= ~(1 << PORTB0);
 }

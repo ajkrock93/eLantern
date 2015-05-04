@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       main.c
 * Date Created :   Monday March 23, 2015 07:53:28 PM
-* Last Edited :    Saturday April 18, 2015 05:08:57 PM
+* Last Edited :    Monday May 04, 2015 04:56:12 PM
 * Description :    This file handles the main job loop
 				   that runs every eLanternServicePeriod	
 ----------------------------------------------------------*/

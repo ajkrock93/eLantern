@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       light_state.c
 * Date Created :   Thursday March 26, 2015 08:51:28 PM
-* Last Edited :    Saturday April 18, 2015 05:10:06 PM
+* Last Edited :    Saturday May 02, 2015 03:48:53 PM
 * Description :    This function handles the state of the
                    light
 ----------------------------------------------------------*/
@@ -24,7 +24,7 @@ unsigned int direction = UP;
 
 //Inits state of light
 void light_init(){
-	DDRB |= (1 << PORTB0);
+	DDRB |= (1 << PORTB1);
 }
 
 //Finite state machine that controls what the 
@@ -32,7 +32,7 @@ void light_init(){
 void light_status(){
 	switch(light_state){
 		case OFF:
-			OCR0B = OFF;
+			OCR1A = OFF;
 			if(button_flag == 1){
 				light_state = ON_STATE;
 				select_timer = 0;
@@ -44,7 +44,7 @@ void light_status(){
 			break;
 		case ON_STATE:
 			if(button_flag == 1 && get_select() < SELECT_TIME){
-				OCR0B = OFF;
+				OCR1A = OFF;
 				fade_timer = 0;
 				runtime_timer = 0;
 				light_state = FADE;
@@ -55,7 +55,7 @@ void light_status(){
 			}
 			break;
 		case LOW:
-			OCR0B = LIGHT_LOW;
+			OCR1A = LIGHT_LOW;
 			if(button_flag == 1){
 				light_state = WAITING_STATE_1;
 				select_timer = 0;
@@ -74,7 +74,7 @@ void light_status(){
 			}
 			break;
 		case MEDIUM:
-			OCR0B = LIGHT_MEDIUM;
+			OCR1A = LIGHT_MEDIUM;
             if(button_flag == 1){
                 light_state = WAITING_STATE_2;
                 select_timer = 0;
@@ -93,7 +93,7 @@ void light_status(){
             }
 			break;
 		case HIGH:
-			OCR0B = LIGHT_HIGH;
+			OCR1A = LIGHT_HIGH;
             if(button_flag == 1){
                 light_state = WAITING_STATE_3;
                 select_timer = 0;
@@ -114,14 +114,14 @@ void light_status(){
 		case FADE:
 			if(get_fade() > 50){
 				if(direction == UP && OCR0B < 121){
-					OCR0B++;
-					if(OCR0B == 120){
+					OCR1A++;
+					if(OCR1A == 120){
 						direction = DOWN;
 					}
 				}
 				if(direction == DOWN && OCR0B > 0){
-					OCR0B--;
-					if(OCR0B == 1){
+					OCR1A--;
+					if(OCR1A == 1){
 					direction = UP;
 					}
 				}
@@ -135,10 +135,5 @@ void light_status(){
 			break;
 	}
 }
-
-
-
-
-
 
 

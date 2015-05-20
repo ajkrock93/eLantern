@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       timer.c
 * Date Created :   Monday March 23, 2015 07:59:26 PM
-* Last Edited :    Thursday May 14, 2015 02:47:28 PM
+* Last Edited :    Wednesday May 20, 2015 11:30:42 AM
 * Description :    This file handles timer setup, 
 				   counting and returning timer values
 ----------------------------------------------------------*/

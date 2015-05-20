@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       light_state.c
 * Date Created :   Thursday March 26, 2015 08:51:28 PM
-* Last Edited :    Friday May 15, 2015 04:51:08 PM
+* Last Edited :    Wednesday May 20, 2015 11:30:12 AM
 * Description :    This function handles the state of the
                    light
 ----------------------------------------------------------*/

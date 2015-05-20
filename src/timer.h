@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       timer.h
 * Date Created :   Monday March 23, 2015 07:59:34 PM
-* Last Edited :    Saturday May 09, 2015 01:15:44 PM
+* Last Edited :    Wednesday May 20, 2015 11:30:54 AM
 * Description :
 ----------------------------------------------------------*/
 

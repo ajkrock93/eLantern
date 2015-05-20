@@ -1,18 +1,9 @@
-
 #if !defined(F_CPU)
-#warning F_CPU not defined in makefile - now defined in softuart.h
-#define F_CPU 3686400UL
+//#warning F_CPU not defined in makefile - now defined in softuart.h
+#define F_CPU 1000000UL
 #endif
 
-#define SOFTUART_BAUD_RATE      2400
-
-#define SOFTUART_RXPIN   PINB
-#define SOFTUART_RXDDR   DDRB
-#define SOFTUART_RXBIT   PB0
-
-#define SOFTUART_TXPORT  PORTB
-#define SOFTUART_TXDDR   DDRB
-#define SOFTUART_TXBIT   PB1
+#include "io.h"
 
 #define SOFTUART_T_COMP_LABEL      TIM0_COMPA_vect
 #define SOFTUART_T_COMP_REG        OCR0A

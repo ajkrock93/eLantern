@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       io.h
 * Date Created :   Monday March 23, 2015 08:01:43 PM
-* Last Edited :    Monday May 04, 2015 02:09:39 PM
+* Last Edited :    Friday May 15, 2015 04:51:10 PM
 * Description :    This file handles all the macros of the 
 				   project
 ----------------------------------------------------------*/
@@ -12,6 +12,12 @@
 
 //Variables
 #define SERVICE_PERIOD	10
+
+//Light Pin
+#define LIGHT_PIN		(1 << PORTB1)
+
+//Buttion Pin
+#define BUTTON_PIN		(1 << PORTB3)
 
 //Button state Macros
 #define WAITING         0
@@ -35,7 +41,7 @@
 #define UP				1
 #define DOWN			0
 #define SLEEP_TIME		10000 //in milliseconds
-#define SELECT_TIME		300
+#define SELECT_TIME		500
 #define RUNTIME			20000
 
 //Timer/Counter0 control register A
@@ -84,5 +90,15 @@
 #define SM1x			(1<<SM1)
 #define SEx				(1<<SE)
 
+//SOFTUART Defs
+#define SOFTUART_BAUD_RATE      2400
+
+#define SOFTUART_RXPIN   PINB
+#define SOFTUART_RXDDR   DDRB
+#define SOFTUART_RXBIT   PB4
+
+#define SOFTUART_TXPORT  PORTB
+#define SOFTUART_TXDDR   DDRB
+#define SOFTUART_TXBIT   PB2
 
 #endif //IO_H

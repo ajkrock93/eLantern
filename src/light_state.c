@@ -2,11 +2,10 @@
 * Author :         Andrew Krock
 * Filename :       light_state.c
 * Date Created :   Thursday March 26, 2015 08:51:28 PM
-* Last Edited :    Saturday May 02, 2015 03:48:53 PM
+* Last Edited :    Friday May 15, 2015 04:51:08 PM
 * Description :    This function handles the state of the
                    light
 ----------------------------------------------------------*/
-
  #define F_CPU 1000000
 
 #include <avr/sfr_defs.h>
@@ -18,13 +17,30 @@
 #include "button_state.h"
 #include "timer.h"
 #include "io.h"
+#include "softuart.h"
 
+unsigned int temp = 100;
+char char_light_state;
+
+//Inits light state
 unsigned int light_state = OFF;
+
+//Inits fade direction
 unsigned int direction = UP;
 
-//Inits state of light
+//Inits state of light pin
 void light_init(){
-	DDRB |= (1 << PORTB1);
+	DDRB |= LIGHT_PIN;
+}
+
+void print_light_state(){
+	if(light_state != temp){
+		char_light_state = (char)light_state;
+		softuart_putchar(char_light_state);
+		//softuart_putchar('0');
+		//temp = light_state;
+	}
+	temp = light_state;
 }
 
 //Finite state machine that controls what the 
@@ -135,5 +151,3 @@ void light_status(){
 			break;
 	}
 }
-
-

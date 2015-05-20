@@ -2,7 +2,7 @@
 * Author :         Andrew Krock
 * Filename :       button_state.c
 * Date Created :   Thursday March 26, 2015 01:21:11 PM
-* Last Edited :    Saturday May 02, 2015 03:48:56 PM
+* Last Edited :    Thursday May 14, 2015 03:40:08 PM
 * Description :    This file handles the button state
 ----------------------------------------------------------*/
 
@@ -21,7 +21,7 @@ unsigned int button_state = WAITING;
 
 //Inits the button
 void button_init(){
-	PORTB |= (1 << PORTB3);
+	PORTB |= BUTTON_PIN;
 }
 
 //Initializes the interrupt vector

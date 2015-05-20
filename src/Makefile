@@ -130,5 +130,7 @@ flash: $(PRG).hex
 terminal:
 	avrdude -p $(MCU_TARGET) -c $(PROGRAMMER) -t
 
+#defining the MCU frequency
+#define F_CPU 1000000UL 
 # Consult this website for help understanding what's going on above
 # http://www.microhowto.info/howto/automatically_generate_makefile_dependencies.html
